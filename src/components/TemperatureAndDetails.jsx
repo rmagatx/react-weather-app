@@ -34,7 +34,7 @@ function TemperatureAndDetails({
             <p>{details}</p>
           </div>
           <div className="flex flex-row items-center justify-between text-white py-3">
-            <img src={iconUrlFromCode(icon)} alt="" className="w-20" />
+            <img src={iconUrlFromCode(icon)} alt="{icon}" className="w-20" />
             <p className="text-5xl">{`${parseInt(temp)}`}°</p>
             <div className="flex flex-col space-y-2">
               <div className="flex font-light text-sm items-center">

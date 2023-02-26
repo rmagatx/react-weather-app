@@ -51,15 +51,7 @@ const getFormattedWeatherData = async (searchParams) => {
     searchParams
   ).then(formatCurrentWeather);
 
-  const { lat, lon } = formattedCurrentWeather;
-
-  const formattedWeather = await getWeatherData("weather", {
-    lat,
-    lon,
-    units: searchParams.units,
-  }).then(formatCurrentWeather);
-
-  return { ...formattedCurrentWeather, ...formattedWeather };
+  return { ...formattedCurrentWeather };
 };
 
 const formatToLocalTime = (

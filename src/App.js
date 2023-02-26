@@ -15,14 +15,25 @@ function App() {
   useEffect(() => {
     const fetchWeather = async () => {
       setLoading(true);
-      await getFormattedWeatherData(query).then((data) => {
-        setWeather(data);
-        setLoading(false);
-      });
+      await getFormattedWeatherData(query)
+        .then((data) => {
+          setWeather(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          if (err.response && err.response.status === 404) {
+            setWeather(null);
+          } else {
+            console.log("Error fetching weather data", err);
+          }
+          setLoading(false);
+        });
     };
 
     fetchWeather();
   }, [query]);
+
+  console.log(weather);
 
   return (
     <div>

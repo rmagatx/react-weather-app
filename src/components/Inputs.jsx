@@ -1,15 +1,8 @@
-import React, { useState } from "react";
 import { UilSearch, UilLocationArrow } from "@iconscout/react-unicons";
 
-function Inputs({ setQuery, units, setUnits }) {
-  const [city, setCity] = useState("");
-  const [defaultCity, setDefaultCity] = useState("winnipeg");
-
-  const handleSearchClick = () => {
-    if (city !== "") {
-      setQuery({ q: city, units: units });
-      setDefaultCity(city);
-    }
+function Inputs({ currentCity, setCurrentCity, setQuery, units, setUnits }) {
+  const handleSearchClick = (e) => {
+    setQuery({ q: currentCity, units: units });
   };
 
   const handleLocationClick = () => {
@@ -29,7 +22,7 @@ function Inputs({ setQuery, units, setUnits }) {
 
   const handleUnitsClick = (e) => {
     if (e.currentTarget.name != units) {
-      setQuery({ q: defaultCity, units: e.currentTarget.name });
+      setQuery({ q: currentCity, units: e.currentTarget.name });
       setUnits(e.currentTarget.name);
     }
   };
@@ -39,8 +32,7 @@ function Inputs({ setQuery, units, setUnits }) {
       <div className="flex flex-row w-3/4 items-center justify-start space-x-4">
         <input
           type="text"
-          value={city}
-          onChange={(e) => setCity(e.currentTarget.value)}
+          onBlur={(e) => setCurrentCity(e.currentTarget.value)}
           placeholder="City"
           className="text-xl font-light w-[300px] p-2 focus:outline-none capitalize"
         />

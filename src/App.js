@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 
 function App() {
-  const [query, setQuery] = useState({ q: "winnipeg", units: "metric" });
+  const [city, setCity] = useState("winnipeg");
+  const [query, setQuery] = useState({ q: city, units: "metric" });
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -33,8 +34,6 @@ function App() {
     fetchWeather();
   }, [query]);
 
-  console.log(weather);
-
   return (
     <div>
       {weather && (
@@ -46,6 +45,8 @@ function App() {
                 <div>
                   {/* <TopButtons /> */}
                   <Inputs
+                    currentCity={city}
+                    setCurrentCity={setCity}
                     query={query}
                     setQuery={setQuery}
                     units={units}
